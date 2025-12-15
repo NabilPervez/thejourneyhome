@@ -545,39 +545,40 @@ const HomePage = ({ onNavigate }) => {
         </div>
       </header>
 
-      {/* Common Ground */}
+      {/* Common Ground - RESTORED */}
       <section id="common-ground" className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <FadeInSection>
             <div className="mb-6 flex justify-center"><Heart className="text-emerald-600" size={40} /></div>
-            <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-8">The Feeling of Missing Something</h2>
+            <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-8">We Are More Alike Than Different</h2>
             <p className="text-lg text-stone-600 leading-relaxed mb-6">
-              Have you ever achieved a goal—bought the car, got the job—and still felt an emptiness? That is because you were designed for something greater.
+              Before we discuss labels, let's discuss the human condition. We all feel a profound sense of gratitude when we see a sunset. We all feel a pang of injustice when we see the weak oppressed. We all have an internal moral compass.
             </p>
             <p className="text-lg text-stone-600 leading-relaxed">
-              Islam teaches that before you were born, your soul testified to God's lordship. This is called the <em>Fitrah</em>—a spiritual compass inside you.
+              Islam teaches that this "compass" is the <em>Fitrah</em>—a primordial state of purity. You were created to know your Creator. That feeling of missing something? It isn't an emptiness; it's a homesickness for the Divine.
             </p>
           </FadeInSection>
         </div>
       </section>
 
-      {/* Intro Allah */}
+      {/* Intro Allah - EXPANDED */}
       <section className="py-24 bg-emerald-50/50 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           <FadeInSection>
             <div className="text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-6">Who is Waiting for You?</h2>
-              <p className="text-lg text-stone-600 max-w-3xl mx-auto">
-                The very first sentence in the Quran is: <em>"In the name of God, the Entirely Merciful, the Especially Merciful."</em>
+              <p className="text-lg text-stone-600 max-w-3xl mx-auto mb-8">
+                The Media often portrays God in Islam as a harsh judge. But when a Muslim opens the Quran, the very first sentence they read is: <em>"In the name of God, the Entirely Merciful, the Especially Merciful."</em> He is Al-Wadud (The Loving), closer to you than your jugular vein.
               </p>
               <button
                 onClick={() => onNavigate('names')}
-                className="mt-6 inline-flex items-center gap-2 text-emerald-700 font-bold hover:underline"
+                className="inline-flex items-center gap-2 text-emerald-700 font-bold hover:underline mb-8"
               >
                 Learn His Beautiful Names <ArrowRight size={16} />
               </button>
             </div>
-            {/* Featured Names */}
+
+            {/* Featured Names Grid */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
               <div className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm border border-stone-100">
                 <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mb-4"><span className="font-amiri text-2xl text-emerald-800">الْوَدُودُ</span></div>
@@ -601,7 +602,36 @@ const HomePage = ({ onNavigate }) => {
         <InfiniteNamesMarquee />
       </section>
 
-      {/* Science */}
+      {/* The Books - RESTORED */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <FadeInSection>
+            <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="md:w-1/2">
+                <BookOpen className="text-emerald-600 mb-6" size={48} />
+                <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-6">A Letter from the Beloved</h2>
+                <p className="text-stone-600 mb-4 leading-relaxed">
+                  If the Creator loves us, would He leave us without guidance? Would He create a complex universe and leave us to guess the rules?
+                </p>
+                <p className="text-stone-600 mb-4 leading-relaxed">
+                  God sent manuals with previous messengers (Moses, Jesus, David). But over centuries, those manuals were edited by human hands. The Quran is the final reminder, sent to confirm the truth in the previous books and correct the errors.
+                </p>
+                <p className="font-bold text-emerald-800">
+                  It is the only religious text on Earth that has remained identical, letter for letter, for 1,400 years.
+                </p>
+              </div>
+              <div className="md:w-1/2 bg-stone-100 p-8 rounded-2xl border-l-4 border-stone-300">
+                <p className="italic text-stone-600 text-lg mb-4">
+                  "If this book were from other than Allah, they would have found within it much contradiction."
+                </p>
+                <p className="text-xs font-bold uppercase tracking-wide text-stone-400">Quran 4:82</p>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Science Carousel */}
       <section className="py-24 px-6 bg-stone-900 text-stone-100">
         <div className="max-w-6xl mx-auto">
           <FadeInSection>
@@ -616,18 +646,86 @@ const HomePage = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Link to Traits */}
+      {/* Beliefs Summary - RESTORED/MODIFIED */}
       <section className="py-24 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-6">How Should We Live?</h2>
+        <div className="max-w-4xl mx-auto">
+          <FadeInSection>
+            <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-12 text-center">What We Believe</h2>
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              {[
+                { title: "Oneness of God", desc: "There is only one Creator. He has no partners, no children, and no equal." },
+                { title: "The Angels", desc: "Beings of light who execute God's commands." },
+                { title: "The Books", desc: "Original Torah, Psalms, Gospel, and the Quran." },
+                { title: "The Prophets", desc: "From Adam to Noah, Abraham, Moses, Jesus, and finally Muhammad." },
+                { title: "Day of Judgment", desc: "This life is a test. We will be held accountable for our kindness." },
+                { title: "Divine Decree", desc: "God has knowledge of all things. Nothing happens without His permission." }
+              ].map((item, idx) => (
+                <div key={idx} className="p-6 bg-stone-50 rounded-lg hover:bg-emerald-50 transition-colors">
+                  <h3 className="font-bold text-xl mb-3 text-emerald-800">{item.title}</h3>
+                  <p className="text-stone-600 text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <button
+                onClick={() => onNavigate('unseen')}
+                className="inline-flex items-center gap-2 text-stone-500 hover:text-emerald-600 font-bold uppercase text-sm border border-stone-200 px-6 py-3 rounded-full hover:border-emerald-600 transition-colors"
+              >
+                Deep Dive: The Unseen <ArrowRight size={16} />
+              </button>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Prophet/Character Summary - RESTORED/MODIFIED */}
+      <section className="py-24 px-6 bg-emerald-900 text-emerald-50">
+        <div className="max-w-5xl mx-auto">
+          <FadeInSection>
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="font-playfair text-3xl md:text-4xl mb-6">The Embodiment of Good</h2>
+                <p className="text-lg mb-6 opacity-90 leading-relaxed">
+                  How do we translate these beliefs into action? We look at the life of <strong>Prophet Muhammad (Peace Be Upon Him)</strong>. He was the most generous, the most patient, and the most honest.
+                </p>
+                <p className="text-lg mb-8 opacity-90 leading-relaxed">
+                  He taught that "A smile is charity." He taught that "The best of you are those who are best to their families." He taught us to care for animals, the environment, and our neighbors—regardless of their faith.
+                </p>
+                <button
+                  onClick={() => onNavigate('prophet')}
+                  className="px-6 py-3 bg-white text-emerald-900 rounded-full font-bold hover:bg-emerald-100 transition-colors flex items-center gap-2"
+                >
+                  Read His Full Story <ArrowRight size={16} />
+                </button>
+              </div>
+              <div className="space-y-4">
+                <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-colors cursor-pointer" onClick={() => onNavigate('traits')}>
+                  <h3 className="font-bold text-xl flex items-center gap-2 mb-2"><User size={20} /> The Character</h3>
+                  <p className="text-sm opacity-80">A Muslim is one from whose tongue and hand other people are safe. If you believe in God, you must be good to His creation.</p>
+                  <p className="text-xs font-bold uppercase mt-3 text-emerald-300">Explore Traits &rarr;</p>
+                </div>
+                <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-colors">
+                  <h3 className="font-bold text-xl flex items-center gap-2 mb-2"><Sparkles size={20} /> The Forgiveness</h3>
+                  <p className="text-sm opacity-80">Even after 23 years of persecution, when the Prophet re-entered Mecca, he forgave everyone who had hurt him. This is the heart of Islam.</p>
+                </div>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Invitation */}
+      <section className="py-24 px-6 bg-white text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-6">Ready to Take the Next Step?</h2>
           <p className="text-lg text-stone-600 mb-8 leading-relaxed">
-            Belief is not just in the heart; it must be visible in your actions. A Muslim is defined by their character: honesty, patience, and kindness.
+            If your heart feels the pull of the Divine Love, the door is always open.
           </p>
           <button
-            onClick={() => onNavigate('traits')}
-            className="px-8 py-3 bg-stone-100 text-stone-800 rounded-full font-bold hover:bg-emerald-600 hover:text-white transition-all shadow-md flex items-center gap-2 mx-auto border border-stone-200"
+            onClick={() => document.querySelector('nav button.bg-emerald-600').click()}
+            className="px-10 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-500 transition-all transform hover:scale-105 shadow-2xl"
           >
-            Explore the Traits of a Believer <ArrowRight size={18} />
+            View the Testimony
           </button>
         </div>
       </section>
