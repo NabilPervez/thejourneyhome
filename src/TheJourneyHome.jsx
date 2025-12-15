@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   BookOpen, Heart, Star, Sun, Moon, Droplets, Mountain, Compass, Anchor,
   User, Check, X, ArrowRight, Scroll, Sparkles, ChevronLeft, ChevronRight,
-  Wind, Thermometer, Map, Activity, GraduationCap, HandHeart, Coffee,
+  Wind, Thermometer, Map, Activity, GraduationCap, HeartHandshake, Coffee,
   MessageCircle, Flame, Mic2, Shield, Smile, ArrowLeft, Menu, Eye, Cloud,
   Ghost, Scale, Lock, Globe, Swords, Flag, Tent, Crown
 } from 'lucide-react';
@@ -45,7 +45,7 @@ const TRAITS_DATA = [
   },
   {
     id: 'zakat',
-    icon: HandHeart,
+    icon: HeartHandshake,
     arabic: "زَكَاة",
     transliteration: "Zakat",
     english: "Charity",
@@ -1010,8 +1010,8 @@ export default function TheJourneyHome() {
     <button
       onClick={() => handleNavigate(target)}
       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors font-bold text-sm ${(view === target || (target === 'traits' && view === 'trait-detail') || (target === 'unseen' && view === 'unseen-detail'))
-          ? 'text-emerald-700 bg-emerald-50'
-          : 'text-stone-500 hover:text-emerald-600 hover:bg-stone-50'
+        ? 'text-emerald-700 bg-emerald-50'
+        : 'text-stone-500 hover:text-emerald-600 hover:bg-stone-50'
         }`}
     >
       {Icon && <Icon size={16} />}
