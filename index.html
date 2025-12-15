@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Journey Home - A spiritual exploration of faith, purpose, and returning to the Divine">
+    <title>The Journey Home - You Are Returning</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- React and Babel for JSX -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        .font-amiri { font-family: 'Amiri', serif; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate3d(0, 20px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 60s linear infinite;
+        }
+        /* Pause on hover */
+        .hover\:pause:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, createElement } = React;
+
+        // --- Utility Components ---
+
+        const FadeInSection = ({ children, delay = 0 }) => {
+            const [isVisible, setVisible] = useState(false);
+            const domRef = useRef();
+
+            useEffect(() => {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) setVisible(true);
+                    });
+                }, { threshold: 0.1 });
+                
+                if (domRef.current) observer.observe(domRef.current);
+                
+                return () => {
+                    if (domRef.current) observer.unobserve(domRef.current);
+                };
+            }, []);
+
+            return (
+                <div
+                    ref={domRef}
+                    className={`transition-all duration-1000 transform ${
+                        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ transitionDelay: `${delay}ms` }}
+                >
+                    {children}
+                </div>
+            );
+        };
+
+        const ArabicText = ({ text, translation, source }) => (
+            <div className="my-8 p-6 md:p-8 bg-stone-50 border-r-4 border-emerald-600 rounded-l-lg shadow-sm">
+                <p className="text-3xl md:text-4xl font-amiri text-right mb-4 text-emerald-900 leading-relaxed" dir="rtl">
+                    {text}
+                </p>
+                <p className="text-stone-700 font-serif italic text-lg md:text-xl mb-3">"{translation}"</p>
+                <p className="text-stone-500 text-sm font-semibold tracking-wide uppercase">— {source}</p>
+            </div>
+        );
+
+        // Icon component wrapper
+        const Icon = ({ name, size = 24, className = "", ...props }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+            
+            return <i data-lucide={name} className={className} style={{ width: size, height: size }} {...props}></i>;
+        };
+
+        // --- Carousel Component for Science (Swipe Enabled) ---
+
+        const ScienceCarousel = ({ items }) => {
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [touchStart, setTouchStart] = useState(null);
+            const [touchEnd, setTouchEnd] = useState(null);
+
+            const minSwipeDistance = 50;
+
+            const onTouchStart = (e) => {
+                setTouchEnd(null);
+                setTouchStart(e.targetTouches[0].clientX);
+            };
+
+            const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+            const onTouchEnd = () => {
+                if (!touchStart || !touchEnd) return;
+                
+                const distance = touchStart - touchEnd;
+                const isLeftSwipe = distance > minSwipeDistance;
+                const isRightSwipe = distance < -minSwipeDistance;
+
+                if (isLeftSwipe) nextSlide();
+                if (isRightSwipe) prevSlide();
+            };
+
+            const nextSlide = () => {
+                setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+            };
+
+            const prevSlide = () => {
+                setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+            };
+
+            useEffect(() => {
+                lucide.createIcons();
+            }, [currentIndex]);
+
+            return (
+                <div className="relative max-w-4xl mx-auto touch-pan-y">
+                    <div 
+                        className="overflow-hidden rounded-2xl bg-white shadow-xl border border-stone-200 min-h-[550px] md:min-h-[500px] flex flex-col select-none"
+                        onTouchStart={onTouchStart}
+                        onTouchMove={onTouchMove}
+                        onTouchEnd={onTouchEnd}
+                    >
+                        <div className="w-full h-2 bg-stone-100">
+                            <div 
+                                className="h-full bg-emerald-500 transition-all duration-300"
+                                style={{ width: `${((currentIndex + 1) / items.length) * 100}%` }}
+                            ></div>
+                        </div>
+
+                        <div className="flex-1 p-6 md:p-12 flex flex-col justify-center animate-fade-in">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="p-3 bg-emerald-100 text-emerald-700 rounded-full shrink-0">
+                                    <Icon name={items[currentIndex].icon} size={32} />
+                                </div>
+                                <h3 className="text-xl md:text-3xl font-bold text-stone-800 leading-tight">{items[currentIndex].title}</h3>
+                            </div>
+                            
+                            <div className="mb-6 space-y-2">
+                                <p className="text-emerald-800 font-serif font-bold tracking-wide text-xs md:text-sm uppercase">The Revelation (7th Century)</p>
+                                <p className="text-stone-600 italic text-lg border-l-2 border-emerald-300 pl-4">"{items[currentIndex].quran}"</p>
+                                <p className="text-xs text-stone-400 font-mono mt-1">{items[currentIndex].citation}</p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <p className="text-blue-800 font-serif font-bold tracking-wide text-xs md:text-sm uppercase">The Discovery ({items[currentIndex].scienceDate})</p>
+                                <p className="text-stone-700 text-base md:text-lg leading-relaxed">{items[currentIndex].explanation}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center mt-6 px-4">
+                        <button 
+                            onClick={prevSlide}
+                            className="p-3 rounded-full bg-stone-800 text-stone-300 hover:bg-emerald-600 hover:text-white transition-colors"
+                            aria-label="Previous Slide"
+                        >
+                            <Icon name="chevron-left" size={24} />
+                        </button>
+                        <div className="flex flex-col items-center">
+                            <span className="text-stone-400 font-mono font-bold text-sm">
+                                {currentIndex + 1} / {items.length}
+                            </span>
+                            <span className="text-xs text-stone-600 md:hidden mt-1 opacity-70">Swipe Left/Right</span>
+                        </div>
+                        <button 
+                            onClick={nextSlide}
+                            className="p-3 rounded-full bg-stone-800 text-stone-300 hover:bg-emerald-600 hover:text-white transition-colors"
+                            aria-label="Next Slide"
+                        >
+                            <Icon name="chevron-right" size={24} />
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Infinite Scrolling Names Component ---
+
+        const CompactNameCard = ({ arabic, transliteration, english }) => (
+            <div className="flex-shrink-0 w-64 md:w-72 bg-white rounded-lg p-5 mr-4 shadow-sm border border-stone-100 flex items-center gap-4 hover:border-emerald-300 transition-colors cursor-pointer group">
+                <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center shrink-0 group-hover:bg-emerald-100">
+                    <span className="font-amiri text-xl text-emerald-800">{arabic}</span>
+                </div>
+                <div>
+                    <h4 className="font-bold text-stone-800 text-sm">{transliteration}</h4>
+                    <p className="text-xs text-stone-500 italic">{english}</p>
+                </div>
+            </div>
+        );
+
+        const InfiniteNamesMarquee = () => {
+            const names = [
+                { ar: "الْمَلِكُ", tr: "Al-Malik", en: "The King" },
+                { ar: "الْقُدُّوسُ", tr: "Al-Quddus", en: "The Most Holy" },
+                { ar: "السَّلاَمُ", tr: "As-Salam", en: "The Source of Peace" },
+                { ar: "الْمُؤْمِنُ", tr: "Al-Mu'min", en: "The Granter of Security" },
+                { ar: "الْمُهَيْمِنُ", tr: "Al-Muhaymin", en: "The Guardian" },
+                { ar: "الْعَزِيزُ", tr: "Al-Aziz", en: "The Almighty" },
+                { ar: "الْجَبَّارُ", tr: "Al-Jabbar", en: "The Compeller" },
+                { ar: "الْمُتَكَبِّرُ", tr: "Al-Mutakabbir", en: "The Supreme" },
+                { ar: "الْخَالِقُ", tr: "Al-Khaliq", en: "The Creator" },
+                { ar: "الْبَارِئُ", tr: "Al-Bari", en: "The Evolver" },
+                { ar: "الْمُصَوِّرُ", tr: "Al-Musawwir", en: "The Fashioner" },
+                { ar: "الْغَفَّارُ", tr: "Al-Ghaffar", en: "The Constant Forgiver" },
+                { ar: "الْقَهَّارُ", tr: "Al-Qahhar", en: "The Subduer" },
+                { ar: "الْوَهَّابُ", tr: "Al-Wahhab", en: "The Bestower" },
+                { ar: "الرَّزَّاقُ", tr: "Ar-Razzaq", en: "The Provider" },
+                { ar: "الْفَتَّاحُ", tr: "Al-Fattah", en: "The Opener" },
+                { ar: "الْعَلِيمُ", tr: "Al-'Alim", en: "The All-Knowing" },
+                { ar: "الْقَابِضُ", tr: "Al-Qabid", en: "The Withholder" },
+                { ar: "الْبَاسِطُ", tr: "Al-Basit", en: "The Extender" },
+                { ar: "الْخَافِضُ", tr: "Al-Khafid", en: "The Reducer" },
+                { ar: "الرَّافِعُ", tr: "Ar-Rafi", en: "The Exalter" },
+                { ar: "الْمُعِزُّ", tr: "Al-Mu'izz", en: "The Honorer" },
+                { ar: "الْمُذِلُّ", tr: "Al-Mudhill", en: "The Humiliator" },
+                { ar: "السَّمِيعُ", tr: "As-Sami", en: "The All-Hearing" },
+                { ar: "الْبَصِيرُ", tr: "Al-Basir", en: "The All-Seeing" },
+                { ar: "الْحَكَمُ", tr: "Al-Hakam", en: "The Judge" },
+                { ar: "الْعَدْلُ", tr: "Al-'Adl", en: "The Just" },
+                { ar: "اللَّطِيفُ", tr: "Al-Latif", en: "The Subtle One" },
+                { ar: "الْخَبِيرُ", tr: "Al-Khabir", en: "The All-Aware" },
+                { ar: "الْحَلِيمُ", tr: "Al-Halim", en: "The Forbearing" }
+            ];
+
+            const seamlessList = [...names, ...names];
+
+            return (
+                <div className="w-full overflow-hidden py-10 bg-emerald-50/30 border-t border-b border-emerald-100 relative group">
+                    <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-emerald-50/50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-emerald-50/50 to-transparent z-10 pointer-events-none"></div>
+                    
+                    <p className="text-center text-sm font-bold text-emerald-800 uppercase tracking-widest mb-6 opacity-70">
+                        And to Allah belong the best names...
+                    </p>
+
+                    <div className="flex animate-marquee hover:pause whitespace-nowrap">
+                        {seamlessList.map((item, index) => (
+                            <CompactNameCard 
+                                key={index}
+                                arabic={item.ar}
+                                transliteration={item.tr}
+                                english={item.en}
+                            />
+                        ))}
+                    </div>
+                    
+                    <p className="text-center text-xs text-stone-400 mt-6 italic">
+                        (Touch or hover to pause)
+                    </p>
+                </div>
+            );
+        };
+
+        // --- Name of Allah Card (Featured) ---
+
+        const NameCard = ({ arabic, transliteration, english, description }) => (
+            <div className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm border border-stone-100 hover:border-emerald-200 hover:shadow-md transition-all h-full">
+                <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-4 shrink-0">
+                    <span className="font-amiri text-3xl text-emerald-800">{arabic}</span>
+                </div>
+                <h3 className="font-bold text-lg text-stone-800 mb-1">{transliteration}</h3>
+                <p className="text-emerald-600 font-serif italic mb-3">{english}</p>
+                <p className="text-sm text-stone-500 leading-relaxed">{description}</p>
+            </div>
+        );
+
+        // --- Main Application ---
+
+        function TheJourneyHome() {
+            const [showShahada, setShowShahada] = useState(false);
+
+            useEffect(() => {
+                lucide.createIcons();
+            }, [showShahada]);
+
+            const scientificMiracles = [
+                {
+                    icon: "user",
+                    title: "1. The Clinging Clot",
+                    quran: "Then We made the sperm-drop into a clinging clot (Alaqah)...",
+                    citation: "Quran 23:14",
+                    scienceDate: "20th Century (Embryology)",
+                    explanation: "The Arabic word 'Alaqah' has three meanings: a leech, a suspended thing, and a blood clot. Microscopic imaging confirms the early human embryo looks exactly like a leech and suspends from the uterine wall, feeding on the mother's blood like a leech. This was invisible to the naked eye."
+                },
+                {
+                    icon: "wind",
+                    title: "2. The Protective Atmosphere",
+                    quran: "And We made the sky a protected ceiling, but they, from its signs, are turning away.",
+                    citation: "Quran 21:32",
+                    scienceDate: "20th Century",
+                    explanation: "The atmosphere (Ozone and Magnetosphere) protects Earth from lethal solar radiation, freezing cold, and meteorites. Without this specific 'ceiling', life would be instantly sterilized. The Quran identified this protective function 1400 years ago."
+                },
+                {
+                    icon: "compass",
+                    title: "3. The Seven Layers",
+                    quran: "It is Allah who has created seven heavens and of the earth, the like of them.",
+                    citation: "Quran 65:12",
+                    scienceDate: "Modern Meteorology / Geology",
+                    explanation: "Scientists have identified that the atmosphere consists of exactly 7 layers (Troposphere, Stratosphere, Mesosphere, Thermosphere, Exosphere, Ionosphere, and Magnetosphere). Similarly, the Earth's internal structure is often categorized into 7 distinct layers (Crust to Inner Core)."
+                },
+                {
+                    icon: "map",
+                    title: "4. The Lowest Point on Earth",
+                    quran: "The Byzantines have been defeated. In the lowest land (Adna al-Ard)...",
+                    citation: "Quran 30:2-3",
+                    scienceDate: "Satellite Topography",
+                    explanation: "The battle between the Persians and Byzantines took place near the Dead Sea. 'Adna' means both 'nearest' and 'lowest'. The Dead Sea basin is geographically the lowest point of dry land on Earth (approx 400m below sea level). No human could measure this altitude in the 7th century."
+                },
+                {
+                    icon: "thermometer",
+                    title: "5. Pain Receptors in Skin",
+                    quran: "We will drive them into a Fire. Every time their skins are roasted through We will replace them with other skins so they may taste the punishment.",
+                    citation: "Quran 4:56",
+                    scienceDate: "Modern Anatomy",
+                    explanation: "For centuries, it was thought that the brain was the direct sensor of pain. We now know that pain receptors (nociceptors) are located in the skin. If the skin is destroyed (3rd degree burn), pain is no longer felt. The verse specifically ties the 'tasting of pain' to the existence of skin."
+                },
+                {
+                    icon: "anchor",
+                    title: "6. Iron Sent From Space",
+                    quran: "And We sent down (Anzalna) iron, wherein is great military might and benefits for the people...",
+                    citation: "Quran 57:25",
+                    scienceDate: "Astrophysics",
+                    explanation: "The energy of our solar system was not sufficient to produce elemental Iron. It can only be created in stars much larger than the Sun. Iron literally 'came down' to Earth via meteorites from distant supernovas. It is an extraterrestrial metal."
+                },
+                {
+                    icon: "droplets",
+                    title: "7. Internal Waves",
+                    quran: "Or [they are] like darknesses within an unfathomable sea which is covered by waves, upon which are waves, over which is clouds...",
+                    citation: "Quran 24:40",
+                    scienceDate: "Oceanography",
+                    explanation: "Deep within the ocean, there are waves that occur between layers of different density. These 'internal waves' are invisible from the surface but can be massive. The Quran describes a sea with waves 'upon' waves, accurately describing the internal structure of the deep ocean."
+                },
+                {
+                    icon: "star",
+                    title: "8. The Big Bang",
+                    quran: "Have those who disbelieved not considered that the heavens and the earth were a joined entity, and We separated them...",
+                    citation: "Quran 21:30",
+                    scienceDate: "1927 (Georges Lemaître)",
+                    explanation: "The standard model of cosmology is that the universe began from a single point of infinite density (singularity) and then expanded (separated). The Quran describes the universe as a 'joined entity' (Ratq) that was pulled apart (Fataq)."
+                },
+                {
+                    icon: "mountain",
+                    title: "9. Mountains as Pegs",
+                    quran: "Have We not made the earth a resting place? And the mountains as stakes (Autad)?",
+                    citation: "Quran 78:6-7",
+                    scienceDate: "1850s (Isostasy Theory)",
+                    explanation: "Mountains are not just piles of rock on the surface. They have deep 'roots' extending into the Earth's crust, often 10-15 times their height. These roots stabilize the tectonic plates exactly like tent pegs stabilize a tent."
+                },
+                {
+                    icon: "activity",
+                    title: "10. The Lying Forelock",
+                    quran: "No! If he does not desist, We will surely drag him by the forelock. A lying, sinning forelock.",
+                    citation: "Quran 96:15-16",
+                    scienceDate: "Neuroscience",
+                    explanation: "The verse attributes lying to the 'forelock' (forehead area). We now know the prefrontal cortex, located directly behind the forehead, is the brain center responsible for planning, decision making, and deception/lying."
+                }
+            ];
+
+            return (
+                <div className="min-h-screen bg-stone-50 font-lato text-stone-800 overflow-x-hidden selection:bg-emerald-200 selection:text-emerald-900">
+                    
+                    {/* Navigation */}
+                    <nav className="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200 py-4">
+                        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-2">
+                                <Icon name="moon" className="text-emerald-600 fill-emerald-600" size={24} />
+                                <span className="font-playfair font-bold text-lg md:text-xl tracking-tight text-stone-800">The Journey Home</span>
+                            </div>
+                            <button 
+                                onClick={() => document.getElementById('common-ground').scrollIntoView({ behavior: 'smooth' })}
+                                className="text-xs md:text-sm font-bold px-4 py-2 rounded-full border border-stone-200 hover:border-emerald-600 hover:text-emerald-600 transition-colors bg-white"
+                            >
+                                Start Reading
+                            </button>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header className="relative h-screen flex items-center justify-center bg-stone-900 text-white overflow-hidden">
+                        <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 to-stone-900"></div>
+                        
+                        <div className="relative z-10 text-center px-6 max-w-4xl">
+                            <FadeInSection>
+                                <h1 className="font-playfair text-5xl md:text-7xl mb-8 leading-tight">
+                                    You are not wandering.<br /> 
+                                    <span className="text-emerald-400">You are returning.</span>
+                                </h1>
+                                <p className="text-lg md:text-2xl font-light text-stone-300 max-w-2xl mx-auto mb-12 leading-relaxed">
+                                    Every soul knows its Creator. The questions you feel—why am I here? where is peace?—are not signs of confusion. They are the call of Home.
+                                </p>
+                                <button 
+                                    onClick={() => document.getElementById('common-ground').scrollIntoView({ behavior: 'smooth' })}
+                                    className="px-10 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-500 transition-all transform hover:scale-105 shadow-2xl flex items-center gap-2 mx-auto"
+                                >
+                                    Begin the Path <Icon name="arrow-right" size={20} />
+                                </button>
+                            </FadeInSection>
+                        </div>
+                    </header>
+
+                    {/* Section 1: Common Ground & Fitrah */}
+                    <section id="common-ground" className="py-24 px-6 bg-white">
+                        <div className="max-w-3xl mx-auto text-center">
+                            <FadeInSection>
+                                <div className="mb-6 flex justify-center"><Icon name="heart" className="text-emerald-600" size={40} /></div>
+                                <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-8">The Feeling of Missing Something</h2>
+                                <p className="text-lg text-stone-600 leading-relaxed mb-6">
+                                    Have you ever achieved a goal—bought the car, got the job—and still felt an emptiness? That is because you were designed for something greater than this world.
+                                </p>
+                                <p className="text-lg text-stone-600 leading-relaxed">
+                                    Islam teaches that before you were born, your soul testified to God's lordship. This is called the <em>Fitrah</em>—a spiritual compass inside you. That tug you feel in your chest isn't sadness; it is homesickness for the Divine.
+                                </p>
+                            </FadeInSection>
+                        </div>
+                    </section>
+
+                    {/* Section 2: Introducing Allah (Love First) */}
+                    <section className="py-24 bg-emerald-50/50 overflow-hidden">
+                        <div className="max-w-6xl mx-auto px-6">
+                            <FadeInSection>
+                                <div className="text-center mb-16">
+                                    <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-6">Who is Waiting for You?</h2>
+                                    <p className="text-lg text-stone-600 max-w-3xl mx-auto">
+                                        The Media often portrays God in Islam as a distant, harsh judge. But when a Muslim opens the Quran, the very first sentence they read is: <em>"In the name of God, the Entirely Merciful, the Especially Merciful."</em>
+                                    </p>
+                                </div>
+
+                                {/* Featured Names Grid */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                                    <NameCard 
+                                        arabic="الْوَدُودُ"
+                                        transliteration="Al-Wadud"
+                                        english="The Most Loving"
+                                        description="He loves you more than a mother loves her child. He is the source of all affection."
+                                    />
+                                    <NameCard 
+                                        arabic="الرَّحْمَنُ"
+                                        transliteration="Ar-Rahman"
+                                        english="The Entirely Merciful"
+                                        description="His mercy encompasses all things. It is available to everyone, sinner or saint."
+                                    />
+                                    <NameCard 
+                                        arabic="الْغَفُورُ"
+                                        transliteration="Al-Ghafur"
+                                        english="The Forgiving"
+                                        description="He forgives repeatedly. No sin is too great for Him to wash away if you ask."
+                                    />
+                                    <NameCard 
+                                        arabic="الْقَرِيبُ"
+                                        transliteration="Al-Qareeb"
+                                        english="The Near One"
+                                        description="He is not a distant entity on a cloud. He is closer to you than your jugular vein."
+                                    />
+                                </div>
+                                
+                                <ArabicText 
+                                    text="وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ"
+                                    translation="And My mercy encompasses all things."
+                                    source="Quran 7:156"
+                                />
+                            </FadeInSection>
+                        </div>
+                        
+                        {/* Infinite Names Marquee */}
+                        <div className="mt-8">
+                            <InfiniteNamesMarquee />
+                        </div>
+                    </section>
+
+                    {/* Section 3: The Logic of the Book */}
+                    <section className="py-24 px-6 bg-white">
+                        <div className="max-w-4xl mx-auto">
+                            <FadeInSection>
+                                <div className="flex flex-col md:flex-row gap-12 items-center">
+                                    <div className="md:w-1/2">
+                                        <Icon name="book-open" className="text-emerald-600 mb-6" size={48} />
+                                        <h2 className="font-playfair text-3xl md:text-4xl text-stone-800 mb-6">A Letter from the Beloved</h2>
+                                        <p className="text-stone-600 mb-4 leading-relaxed">
+                                            If the Creator loves us, would He leave us without guidance? Would He create a complex universe and leave us to guess the rules?
+                                        </p>
+                                        <p className="text-stone-600 mb-4 leading-relaxed">
+                                            God sent manuals with previous messengers (Moses, Jesus, David). But over centuries, those manuals were edited by human hands. The Quran is the final reminder, sent to confirm the truth in the previous books and correct the errors.
+                                        </p>
+                                        <p className="font-bold text-emerald-800">
+                                            It is the only religious text on Earth that has remained identical, letter for letter, for 1,400 years.
+                                        </p>
+                                    </div>
+                                    <div className="md:w-1/2 bg-stone-100 p-8 rounded-2xl border-l-4 border-stone-300">
+                                        <p className="italic text-stone-600 text-lg mb-4">
+                                            "If this book were from other than Allah, they would have found within it much contradiction."
+                                        </p>
+                                        <p className="text-xs font-bold uppercase tracking-wide text-stone-400">Quran 4:82</p>
+                                    </div>
+                                </div>
+                            </FadeInSection>
+                        </div>
+                    </section>
+
+                    {/* Section 4: Science Carousel */}
+                    <section className="py-24 px-6 bg-stone-900 text-stone-100">
+                        <div className="max-w-6xl mx-auto">
+                            <FadeInSection>
+                                <div className="text-center mb-16">
+                                    <h2 className="font-playfair text-3xl md:text-4xl text-emerald-400 mb-6">Signs for the Thinking Mind</h2>
+                                    <p className="text-xl text-stone-300 max-w-3xl mx-auto">
+                                        The Quran is not a science textbook—it is a book of signs. But when it speaks about the natural world, it describes facts that were impossible for a human in the 7th-century desert to know.
+                                    </p>
+                                    <p className="text-sm text-stone-500 mt-4 md:hidden">Swipe to explore 10 undeniable facts.</p>
+                                </div>
+
+                                <ScienceCarousel items={scientificMiracles} />
+
+                            </FadeInSection>
+                        </div>
+                    </section>
+
+                    {/* Section 5: The Messenger & Character */}
+                    <section className="py-24 px-6 bg-emerald-900 text-emerald-50">
+                        <div className="max-w-5xl mx-auto">
+                            <FadeInSection>
+                                <div className="grid md:grid-cols-2 gap-16 items-center">
+                                    <div>
+                                        <h2 className="font-playfair text-3xl md:text-4xl mb-6">The Embodiment of Good</h2>
+                                        <p className="text-lg mb-6 opacity-90 leading-relaxed">
+                                            How do we translate these beliefs into action? We look at the life of <strong>Prophet Muhammad (Peace Be Upon Him)</strong>. He was the most generous, the most patient, and the most honest.
+                                        </p>
+                                        <p className="text-lg mb-6 opacity-90 leading-relaxed">
+                                            He taught that "A smile is charity." He taught that "The best of you are those who are best to their families." He taught us to care for animals, the environment, and our neighbors—regardless of their faith.
+                                        </p>
+                                        <div className="bg-emerald-800/50 p-6 rounded-lg border border-emerald-700">
+                                            <p className="italic text-xl mb-4">"God does not look at your physical shapes or wealth, but He looks at your hearts and actions."</p>
+                                            <p className="text-sm uppercase tracking-wide font-bold opacity-70">— Prophet Muhammad (Muslim)</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-colors">
+                                            <h3 className="font-bold text-xl flex items-center gap-2 mb-2"><Icon name="user" size={20}/> The Character</h3>
+                                            <p className="text-sm opacity-80">A Muslim is one from whose tongue and hand other people are safe. If you believe in God, you must be good to His creation.</p>
+                                        </div>
+                                        <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-colors">
+                                            <h3 className="font-bold text-xl flex items-center gap-2 mb-2"><Icon name="sparkles" size={20}/> The Forgiveness</h3>
+                                            <p className="text-sm opacity-80">Even after 23 years of persecution, when the Prophet re-entered Mecca, he forgave everyone who had hurt him. This is the heart of Islam.</p>
+                                        </div>
+                                        <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-colors">
+                                            <h3 className="font-bold text-xl flex items-center gap-2 mb-2"><Icon name="scroll" size={20}/> The Afterlife</h3>
+                                            <p className="text-sm opacity-80">This life is a test. Justice will be served in the next life. This belief brings peace—knowing that no good deed is wasted and no injustice is ignored.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </FadeInSection>
+                        </div>
+                    </section>
+
+                    {/* Section 6: The Invitation (Shahada) */}
+                    <section className="py-32 px-6 bg-stone-50 text-center">
+                        <div className="max-w-3xl mx-auto">
+                            <FadeInSection>
+                                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                                    <Icon name="wind" className="text-emerald-600" size={40} />
+                                </div>
+                                <h2 className="font-playfair text-4xl md:text-5xl text-stone-800 mb-8">Are You Ready to Return?</h2>
+                                <p className="text-xl text-stone-600 mb-8 leading-relaxed">
+                                    If your mind accepts the evidence, and your heart feels the pull of the Divine Love, then perhaps you are ready. There is no baptism, no ceremony, no priest. It is just you and your Creator.
+                                </p>
+                                <p className="text-lg text-stone-600 mb-12">
+                                    The entrance is a simple sentence called the <strong>Shahada</strong> (The Testimony).
+                                </p>
+                                
+                                <button 
+                                    onClick={() => setShowShahada(true)}
+                                    className="group px-10 py-5 bg-emerald-600 text-white rounded-full font-bold text-lg shadow-xl hover:bg-emerald-700 transition-all transform hover:scale-105"
+                                >
+                                    I want to see the Testimony
+                                    <span className="block text-xs font-normal opacity-70 mt-1 group-hover:opacity-100">No commitment required to look</span>
+                                </button>
+                            </FadeInSection>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="bg-white border-t border-stone-200 text-stone-500 py-12 text-center">
+                        <p className="mb-2 font-serif text-lg">"Peace be upon those who follow the guidance."</p>
+                        <p className="text-xs opacity-60">© 2024 The Journey Home.</p>
+                    </footer>
+
+                    {/* Shahada Modal */}
+                    {showShahada && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-stone-900/95 backdrop-blur-md transition-opacity">
+                            <div className="bg-white rounded-2xl max-w-2xl w-full p-6 md:p-12 relative shadow-2xl animate-fade-in-up overflow-y-auto max-h-[90vh]">
+                                <button 
+                                    onClick={() => setShowShahada(false)}
+                                    className="absolute top-4 right-4 p-2 bg-stone-100 rounded-full text-stone-400 hover:bg-stone-200 hover:text-stone-800 transition-colors"
+                                >
+                                    <Icon name="x" size={24} />
+                                </button>
+                                
+                                <div className="text-center">
+                                    <h3 className="font-playfair text-2xl md:text-3xl mb-4 text-emerald-800">The Testimony of Faith</h3>
+                                    <p className="text-stone-500 mb-8 max-w-md mx-auto">
+                                        By saying this with belief in your heart, you return to your natural state of purity. You become a Muslim.
+                                    </p>
+                                    
+                                    <div className="bg-emerald-50 p-6 md:p-10 rounded-2xl border border-emerald-100 mb-8 shadow-inner">
+                                        <p className="text-3xl md:text-5xl font-amiri text-emerald-900 mb-8 leading-loose" dir="rtl">
+                                            أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا ٱللَّٰهُ <br />
+                                            وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ ٱللَّٰهِ
+                                        </p>
+                                        <div className="space-y-2">
+                                            <p className="text-stone-600 text-lg md:text-xl font-serif italic">
+                                                "Ash-hadu an la ilaha illa Allah,"
+                                            </p>
+                                            <p className="text-stone-600 text-lg md:text-xl font-serif italic">
+                                                "Wa ash-hadu anna Muhammadan Rasul Allah."
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <h4 className="text-sm font-bold text-stone-400 uppercase tracking-widest mb-2">Meaning</h4>
+                                        <p className="text-xl md:text-3xl text-stone-800 font-playfair leading-relaxed">
+                                            "I bear witness that there is no god but Allah, and I bear witness that Muhammad is His Messenger."
+                                        </p>
+                                    </div>
+
+                                    <div className="bg-blue-50 p-5 rounded-xl text-left text-blue-900 flex gap-4 items-start">
+                                        <Icon name="check" className="shrink-0 mt-1 text-blue-600" size={24} />
+                                        <div>
+                                            <p className="font-bold mb-1">Did you say it?</p>
+                                            <p className="text-sm leading-relaxed text-blue-800/80">
+                                                If you said this with sincerity, then welcome, brother or sister. All your past mistakes are wiped clean. You start today with a fresh page.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TheJourneyHome />);
+    </script>
+</body>
+</html>
