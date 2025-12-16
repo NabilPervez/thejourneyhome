@@ -25,10 +25,18 @@ const HowToPrayPage = ({ onNavigate }) => {
                 </div>
 
                 <div className="flex-grow bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden h-[800px] md:h-[1000px] relative">
+                    {/* Mobile: Use Google Docs Viewer */}
+                    <iframe
+                        src="https://docs.google.com/viewer?url=https://salamcenter.org/wp-content/uploads/2020/09/Prayer-Guide.pdf&embedded=true"
+                        className="w-full h-full border-none md:hidden"
+                        title="Prayer Guide PDF Mobile"
+                    />
+
+                    {/* Desktop: Use Object/Iframe direct embed */}
                     <iframe
                         src="https://salamcenter.org/wp-content/uploads/2020/09/Prayer-Guide.pdf"
-                        className="w-full h-full border-none"
-                        title="Prayer Guide PDF"
+                        className="w-full h-full border-none hidden md:block"
+                        title="Prayer Guide PDF Desktop"
                     />
                 </div>
 
