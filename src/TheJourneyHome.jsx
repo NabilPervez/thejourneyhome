@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import DuaPage from './DuaPage';
 import {
   BookOpen, Heart, Star, Sun, Moon, Droplets, Mountain, Compass, Anchor,
   User, Check, X, ArrowRight, Scroll, Sparkles, ChevronLeft, ChevronRight,
@@ -1043,6 +1044,7 @@ export default function TheJourneyHome() {
               <NavLink target="prophet" label="The Prophet" icon={Scroll} />
               <NavLink target="unseen" label="The Unseen" icon={Eye} />
               <NavLink target="traits" label="The Character" icon={User} />
+              <NavLink target="dua" label="Duas" icon={MessageCircle} />
             </div>
 
             <div className="flex items-center gap-3">
@@ -1072,6 +1074,7 @@ export default function TheJourneyHome() {
             <NavLink target="prophet" label="The Prophet" icon={Scroll} />
             <NavLink target="unseen" label="The Unseen" icon={Eye} />
             <NavLink target="traits" label="The Character" icon={User} />
+            <NavLink target="dua" label="Duas" icon={MessageCircle} />
           </div>
         )}
       </nav>
@@ -1084,6 +1087,7 @@ export default function TheJourneyHome() {
       {view === 'unseen-detail' && <UnseenDetail item={selectedUnseen} onBack={() => handleNavigate('unseen')} />}
       {view === 'traits' && <TraitsHub onNavigate={handleNavigate} onSelectTrait={handleSelectTrait} />}
       {view === 'trait-detail' && <TraitDetail trait={selectedTrait} onBack={() => handleNavigate('traits')} />}
+      {view === 'dua' && <DuaPage onNavigate={handleNavigate} />}
 
       {/* Footer */}
       {(view !== 'names') && (
