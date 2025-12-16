@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DuaPage from './DuaPage';
+import HowToPrayPage from './HowToPrayPage';
 import {
   BookOpen, Heart, Star, Sun, Moon, Droplets, Mountain, Compass, Anchor,
   User, Check, X, ArrowRight, Scroll, Sparkles, ChevronLeft, ChevronRight,
@@ -1045,6 +1046,7 @@ export default function TheJourneyHome() {
               <NavLink target="unseen" label="The Unseen" icon={Eye} />
               <NavLink target="traits" label="The Character" icon={User} />
               <NavLink target="dua" label="Duas" icon={MessageCircle} />
+              <NavLink target="how-to-pray" label="How to Pray" icon={BookOpen} />
             </div>
 
             <div className="flex items-center gap-3">
@@ -1075,6 +1077,7 @@ export default function TheJourneyHome() {
             <NavLink target="unseen" label="The Unseen" icon={Eye} />
             <NavLink target="traits" label="The Character" icon={User} />
             <NavLink target="dua" label="Duas" icon={MessageCircle} />
+            <NavLink target="how-to-pray" label="How to Pray" icon={BookOpen} />
           </div>
         )}
       </nav>
@@ -1088,6 +1091,7 @@ export default function TheJourneyHome() {
       {view === 'traits' && <TraitsHub onNavigate={handleNavigate} onSelectTrait={handleSelectTrait} />}
       {view === 'trait-detail' && <TraitDetail trait={selectedTrait} onBack={() => handleNavigate('traits')} />}
       {view === 'dua' && <DuaPage onNavigate={handleNavigate} />}
+      {view === 'how-to-pray' && <HowToPrayPage onNavigate={handleNavigate} />}
 
       {/* Footer */}
       {(view !== 'names') && (
