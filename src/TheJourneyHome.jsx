@@ -481,7 +481,7 @@ const InfiniteNamesMarquee = () => {
 // --- PAGES ---
 
 // 1. Home Page View
-const HomePage = ({ onNavigate }) => {
+const HomePage = ({ onNavigate, onShowShahada }) => {
   const scientificMiracles = [
     {
       icon: User,
@@ -725,10 +725,10 @@ const HomePage = ({ onNavigate }) => {
             If your heart feels the pull of the Divine Love, the door is always open.
           </p>
           <button
-            onClick={() => document.querySelector('nav button.bg-emerald-600').click()}
+            onClick={() => onShowShahada(true)}
             className="px-10 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-500 transition-all transform hover:scale-105 shadow-2xl"
           >
-            View the Testimony
+            Ready To Become A Muslim?
           </button>
         </div>
       </section>
@@ -1052,13 +1052,6 @@ export default function TheJourneyHome() {
             </div>
 
             <div className="flex items-center gap-3">
-              <button
-                onClick={() => setShowShahada(true)}
-                className="text-xs md:text-sm font-bold px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200"
-              >
-                The Testimony
-              </button>
-
               {/* Mobile Menu Button */}
               <button
                 className="lg:hidden p-2 text-stone-500 hover:bg-stone-100 rounded-md"
@@ -1086,7 +1079,7 @@ export default function TheJourneyHome() {
       </nav>
 
       {/* View Logic */}
-      {view === 'home' && <HomePage onNavigate={handleNavigate} />}
+      {view === 'home' && <HomePage onNavigate={handleNavigate} onShowShahada={setShowShahada} />}
       {view === 'names' && <NamesPage />}
       {view === 'prophet' && <ProphetPage onNavigate={handleNavigate} />}
       {view === 'unseen' && <UnseenHub onNavigate={handleNavigate} onSelectUnseen={handleSelectUnseen} />}
