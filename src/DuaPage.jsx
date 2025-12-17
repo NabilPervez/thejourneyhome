@@ -182,9 +182,8 @@ const DuaPage = ({ onNavigate }) => {
                     </p>
                 </div>
 
-                {/* New Info Section */}
                 <FadeInSection>
-                    <div className="grid md:grid-cols-3 gap-6 mb-20">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
                         <div className={styles.introCard}>
                             <div className={styles.iconWrapper}>
                                 <Heart size={28} />
@@ -212,6 +211,16 @@ const DuaPage = ({ onNavigate }) => {
                             <h3 className={styles.sectionTitle}>How do we do it?</h3>
                             <p className={styles.sectionText}>
                                 Start with praise ("Alhamdulillah"), send blessings on the Prophet (Salawat), and then ask with absolute conviction. Be persistent; God loves the persistent caller.
+                            </p>
+                        </div>
+
+                        <div className={styles.introCard}>
+                            <div className={styles.iconWrapper}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                            </div>
+                            <h3 className={styles.sectionTitle}>When?</h3>
+                            <p className={styles.sectionText}>
+                                Anytime. However, times of acceptance are: during Sujood, before Tasleem in prayer, between Adhan & Iqamah, when it rains, and the last third of the night.
                             </p>
                         </div>
                     </div>
