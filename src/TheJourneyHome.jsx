@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DuaPage from './DuaPage';
+import DhikrPage from './DhikrPage';
 import HowToPrayPage from './HowToPrayPage';
 import {
   BookOpen, Heart, Star, Sun, Moon, Droplets, Mountain, Compass, Anchor,
@@ -1046,6 +1047,7 @@ export default function TheJourneyHome() {
               <NavLink target="unseen" label="The Unseen" icon={Eye} />
               <NavLink target="traits" label="The Character" icon={User} />
               <NavLink target="dua" label="Duas" icon={MessageCircle} />
+              <NavLink target="dhikr" label="Dhikr" icon={Activity} />
               <NavLink target="how-to-pray" label="How to Pray" icon={BookOpen} />
             </div>
 
@@ -1077,6 +1079,7 @@ export default function TheJourneyHome() {
             <NavLink target="unseen" label="The Unseen" icon={Eye} />
             <NavLink target="traits" label="The Character" icon={User} />
             <NavLink target="dua" label="Duas" icon={MessageCircle} />
+            <NavLink target="dhikr" label="Dhikr" icon={Activity} />
             <NavLink target="how-to-pray" label="How to Pray" icon={BookOpen} />
           </div>
         )}
@@ -1091,6 +1094,7 @@ export default function TheJourneyHome() {
       {view === 'traits' && <TraitsHub onNavigate={handleNavigate} onSelectTrait={handleSelectTrait} />}
       {view === 'trait-detail' && <TraitDetail trait={selectedTrait} onBack={() => handleNavigate('traits')} />}
       {view === 'dua' && <DuaPage onNavigate={handleNavigate} />}
+      {view === 'dhikr' && <DhikrPage onNavigate={handleNavigate} />}
       {view === 'how-to-pray' && <HowToPrayPage onNavigate={handleNavigate} />}
 
       {/* Footer */}
