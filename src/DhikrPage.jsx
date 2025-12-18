@@ -37,6 +37,7 @@ const FadeInSection = ({ children, delay = 0 }) => {
 
 const DHIKR_DATA = [
     {
+        category: "Praise & Tasbih",
         title: "Tahlil: The Best Dhikr",
         arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ",
         transliteration: "Lā ilāha illā-Allāh",
@@ -45,6 +46,7 @@ const DHIKR_DATA = [
         source: "Nasa'i"
     },
     {
+        category: "Praise & Tasbih",
         title: "Tasbih, Tahmid, Takbir",
         arabic: "سُبْحَانَ اللّٰهِ ، اَلْحَمْدُ لِلّٰهِ ، اَللّٰهُ أَكْبَرُ",
         transliteration: "Subḥāna-llāh. Alḥamdu li-llāh, Allāhu akbar.",
@@ -53,6 +55,7 @@ const DHIKR_DATA = [
         source: "Muslim"
     },
     {
+        category: "Strength & Protection",
         title: "Hawqalah: Treasure of Paradise",
         arabic: "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ",
         transliteration: "Lā ḥawla wa lā quwwata illā bi-llāh",
@@ -61,6 +64,7 @@ const DHIKR_DATA = [
         source: "Tirmidhi"
     },
     {
+        category: "Salawat",
         title: "Salawat",
         arabic: "اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ",
         transliteration: "Allāhumma ṣalli ʿalā Muḥammad wa ʿalā āli Muḥammad...",
@@ -69,6 +73,7 @@ const DHIKR_DATA = [
         source: "Bukhari"
     },
     {
+        category: "Praise & Tasbih",
         title: "Best Statement of Prophets",
         arabic: "لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيْكَ لَهُ ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيْرٌ",
         transliteration: "Lā ilāha illā-Allāh, waḥdahū lā sharīka lah, lahu-l-mulk, wa lahu-l-ḥamd, wa Huwa ʿalā kulli shay’in Qadīr.",
@@ -77,6 +82,7 @@ const DHIKR_DATA = [
         source: "Tirmidhi"
     },
     {
+        category: "Praise & Tasbih",
         title: "Heavy on the Scales",
         arabic: "سُبْحَانَ اللهِ وَبِحَمْدِهِ ، سُبْحَانَ اللهِ الْعَظِيْم",
         transliteration: "Subḥāna-llāhi wa bi-ḥamdihī, subḥāna-llāhi-l-aẓīm.",
@@ -85,6 +91,7 @@ const DHIKR_DATA = [
         source: "Bukhari"
     },
     {
+        category: "Forgiveness & Relief",
         title: "For Distress",
         arabic: "يَا حَيُّ يَا قَيُّوْمُ ، بِرَحْمَتِكَ أَسْتَغِيْثُ",
         transliteration: "Yā Ḥayyu yā Qayyūm, bi-raḥmatika astaghīth.",
@@ -93,6 +100,7 @@ const DHIKR_DATA = [
         source: "Tirmidhi"
     },
     {
+        category: "Forgiveness & Relief",
         title: "Supplication of Yunus (A.S)",
         arabic: "لَآ إِلٰهَ إِلَّآ أَنْتَ سُبۡحٰنَكَ إِنِّيْ كُنْتُ مِنَ الظّٰلِمِيْنَ",
         transliteration: "Lā ilāha illā Anta subḥānaka innī kuntu mina-ẓ-ẓālimīn.",
@@ -101,6 +109,7 @@ const DHIKR_DATA = [
         source: "Tirmidhi"
     },
     {
+        category: "Forgiveness & Relief",
         title: "For Forgiveness",
         arabic: "أَسْتَغْفِرُ اللهَ الْعَظِيْمَ الَّذِيْ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ ، وَأَتُوْبُ إِلَيْهِ",
         transliteration: "Astaghfiru-l-llāha-l-aẓīm al-ladhī lā ilāha illā Huwa-l-Ḥayyu-l-Qayyūm, wa atūbu ilayh.",
@@ -118,6 +127,8 @@ const styles = {
 };
 
 const DhikrPage = ({ onNavigate }) => {
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
     return (
         <div className="min-h-screen pt-24 pb-12 px-6 bg-stone-50 animate-fade-in">
             <div className="max-w-4xl mx-auto">
@@ -184,39 +195,57 @@ const DhikrPage = ({ onNavigate }) => {
                     </div>
                 </FadeInSection>
 
+                {/* Filter Selection */}
+                <div className="flex flex-wrap justify-center gap-3 mb-10 overflow-x-auto pb-4 no-scrollbar">
+                    {['All', ...new Set(DHIKR_DATA.map(d => d.category))].map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => setSelectedCategory(category)}
+                            className={`px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === category
+                                    ? 'bg-emerald-600 text-white shadow-md transform scale-105'
+                                    : 'bg-white text-stone-600 border border-stone-200 hover:border-emerald-300 hover:text-emerald-600'
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
                 {/* Dhikr List */}
                 <div className="space-y-8">
-                    {DHIKR_DATA.map((item, index) => (
-                        <FadeInSection key={index} delay={index * 100}>
-                            <div className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-shadow">
-                                <div className="bg-emerald-50/30 px-6 py-4 border-b border-emerald-100 flex flex-wrap gap-2 items-center justify-between">
-                                    <h3 className="font-playfair font-bold text-xl text-emerald-900">{item.title}</h3>
-                                    <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">{item.source}</span>
-                                </div>
-                                <div className="p-6 md:p-8">
-                                    <p className="text-stone-500 italic mb-6 text-sm md:text-base border-l-4 border-stone-200 pl-4">
-                                        {item.benefit}
-                                    </p>
+                    {DHIKR_DATA
+                        .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
+                        .map((item, index) => (
+                            <FadeInSection key={index} delay={index * 100}>
+                                <div className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-shadow">
+                                    <div className="bg-emerald-50/30 px-6 py-4 border-b border-emerald-100 flex flex-wrap gap-2 items-center justify-between">
+                                        <h3 className="font-playfair font-bold text-xl text-emerald-900">{item.title}</h3>
+                                        <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">{item.source}</span>
+                                    </div>
+                                    <div className="p-6 md:p-8">
+                                        <p className="text-stone-500 italic mb-6 text-sm md:text-base border-l-4 border-stone-200 pl-4">
+                                            {item.benefit}
+                                        </p>
 
-                                    <div className="my-6">
-                                        <p className="text-3xl md:text-4xl font-amiri text-right mb-4 text-stone-800 leading-relaxed" dir="rtl">
-                                            {item.arabic}
+                                        <div className="my-6">
+                                            <p className="text-3xl md:text-4xl font-amiri text-right mb-4 text-stone-800 leading-relaxed" dir="rtl">
+                                                {item.arabic}
+                                            </p>
+                                        </div>
+
+                                        <div className="bg-stone-50 p-4 rounded-lg mb-4">
+                                            <p className="font-mono text-emerald-700 text-sm md:text-base leading-relaxed opacity-90">
+                                                {item.transliteration}
+                                            </p>
+                                        </div>
+
+                                        <p className="text-stone-700 font-serif text-lg md:text-xl leading-relaxed">
+                                            "{item.translation}"
                                         </p>
                                     </div>
-
-                                    <div className="bg-stone-50 p-4 rounded-lg mb-4">
-                                        <p className="font-mono text-emerald-700 text-sm md:text-base leading-relaxed opacity-90">
-                                            {item.transliteration}
-                                        </p>
-                                    </div>
-
-                                    <p className="text-stone-700 font-serif text-lg md:text-xl leading-relaxed">
-                                        "{item.translation}"
-                                    </p>
                                 </div>
-                            </div>
-                        </FadeInSection>
-                    ))}
+                            </FadeInSection>
+                        ))}
                 </div>
 
                 <div className="mt-20 text-center">

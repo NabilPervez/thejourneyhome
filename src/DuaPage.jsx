@@ -154,6 +154,8 @@ const styles = {
 };
 
 const DuaPage = ({ onNavigate }) => {
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
     // Group duas by purpose
     const groupedDuas = DUAS_DATA.reduce((acc, dua) => {
         if (!acc[dua.purpose]) acc[dua.purpose] = [];
@@ -226,55 +228,73 @@ const DuaPage = ({ onNavigate }) => {
                     </div>
                 </FadeInSection>
 
+                {/* Filter Selection */}
+                <div className="flex flex-wrapjustify-center gap-3 mb-12 overflow-x-auto pb-4 no-scrollbar">
+                    {['All', ...new Set(DUAS_DATA.map(d => d.purpose))].map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => setSelectedCategory(category)}
+                            className={`px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === category
+                                ? 'bg-emerald-600 text-white shadow-md transform scale-105'
+                                : 'bg-white text-stone-600 border border-stone-200 hover:border-emerald-300 hover:text-emerald-600'
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
                 {/* Duas List Grouped by Category */}
                 <div className="space-y-16">
-                    {Object.entries(groupedDuas).map(([category, duas], groupIndex) => (
-                        <div key={category}>
-                            <FadeInSection delay={groupIndex * 100}>
-                                <div className="flex items-center gap-4 mb-8">
-                                    <div className="h-px bg-stone-200 flex-1"></div>
-                                    <h2 className="font-playfair text-2xl md:text-3xl text-stone-800 text-center px-4">
-                                        {category}
-                                    </h2>
-                                    <div className="h-px bg-stone-200 flex-1"></div>
+                    {Object.entries(groupedDuas)
+                        .filter(([category]) => selectedCategory === 'All' || category === selectedCategory)
+                        .map(([category, duas], groupIndex) => (
+                            <div key={category}>
+                                <FadeInSection delay={groupIndex * 100}>
+                                    <div className="flex items-center gap-4 mb-8">
+                                        <div className="h-px bg-stone-200 flex-1"></div>
+                                        <h2 className="font-playfair text-2xl md:text-3xl text-stone-800 text-center px-4">
+                                            {category}
+                                        </h2>
+                                        <div className="h-px bg-stone-200 flex-1"></div>
+                                    </div>
+                                </FadeInSection>
+
+                                <div className="space-y-8">
+                                    {duas.map((dua, index) => (
+                                        <FadeInSection key={index} delay={index * 100}>
+                                            <div className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-shadow">
+                                                <div className="bg-emerald-50/30 px-6 py-4 border-b border-emerald-100 flex flex-wrap gap-2 items-center justify-between">
+                                                    <h3 className="font-playfair font-bold text-xl text-emerald-900">{dua.category}</h3>
+                                                    <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">{dua.source}</span>
+                                                </div>
+                                                <div className="p-6 md:p-8">
+                                                    <p className="text-stone-500 italic mb-6 text-sm md:text-base border-l-4 border-stone-200 pl-4">
+                                                        {dua.context}
+                                                    </p>
+
+                                                    <div className="my-6">
+                                                        <p className="text-3xl md:text-4xl font-amiri text-right mb-4 text-stone-800 leading-relaxed" dir="rtl">
+                                                            {dua.arabic}
+                                                        </p>
+                                                    </div>
+
+                                                    <div className="bg-stone-50 p-4 rounded-lg mb-4">
+                                                        <p className="font-mono text-emerald-700 text-sm md:text-base leading-relaxed opacity-90">
+                                                            {dua.transliteration}
+                                                        </p>
+                                                    </div>
+
+                                                    <p className="text-stone-700 font-serif text-lg md:text-xl leading-relaxed">
+                                                        "{dua.translation}"
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </FadeInSection>
+                                    ))}
                                 </div>
-                            </FadeInSection>
-
-                            <div className="space-y-8">
-                                {duas.map((dua, index) => (
-                                    <FadeInSection key={index} delay={index * 100}>
-                                        <div className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-shadow">
-                                            <div className="bg-emerald-50/30 px-6 py-4 border-b border-emerald-100 flex flex-wrap gap-2 items-center justify-between">
-                                                <h3 className="font-playfair font-bold text-xl text-emerald-900">{dua.category}</h3>
-                                                <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">{dua.source}</span>
-                                            </div>
-                                            <div className="p-6 md:p-8">
-                                                <p className="text-stone-500 italic mb-6 text-sm md:text-base border-l-4 border-stone-200 pl-4">
-                                                    {dua.context}
-                                                </p>
-
-                                                <div className="my-6">
-                                                    <p className="text-3xl md:text-4xl font-amiri text-right mb-4 text-stone-800 leading-relaxed" dir="rtl">
-                                                        {dua.arabic}
-                                                    </p>
-                                                </div>
-
-                                                <div className="bg-stone-50 p-4 rounded-lg mb-4">
-                                                    <p className="font-mono text-emerald-700 text-sm md:text-base leading-relaxed opacity-90">
-                                                        {dua.transliteration}
-                                                    </p>
-                                                </div>
-
-                                                <p className="text-stone-700 font-serif text-lg md:text-xl leading-relaxed">
-                                                    "{dua.translation}"
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </FadeInSection>
-                                ))}
                             </div>
-                        </div>
-                    ))}
+                        ))}
                 </div>
 
                 <div className="mt-20 text-center">
