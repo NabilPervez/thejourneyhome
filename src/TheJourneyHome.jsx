@@ -252,80 +252,136 @@ const UNSEEN_DATA = [
 const PROPHET_TIMELINE = [
   {
     year: "570 CE",
-    title: "The Year of the Elephant",
-    desc: "Born in Mecca. His father Abdullah died before his birth. His mother Aminah died when he was six. He was raised by his grandfather Abdul-Muttalib, and later his uncle Abu Talib. He grew up as an orphan in a tribal society.",
-    quote: "Did He not find you an orphan and give [you] refuge?",
-    source: "Quran 93:6"
+    title: "The Year of the Elephant & The Orphan’s Birth",
+    desc: "The timeline begins in a year of turmoil. The Abyssinian general Abraha marched an army of elephants toward Mecca to destroy the Kaaba. The defenseless Meccans retreated to the mountains, leaving the House of God to His protection. Miraculously, flocks of birds appeared, dropping stones of baked clay that decimated the army, saving the sanctuary [1].",
+    points: [
+      { title: "The Birth", content: "In this same year, Muhammad (PBUH) was born. His father, Abdullah, had passed away months prior during a trade journey, leaving Muhammad to enter the world as an orphan." },
+      { title: "Significance", content: "His birth brought a light that would eventually illuminate a world darkened by tribal warfare and idolatry." }
+    ]
   },
   {
-    year: "595 CE",
-    title: "Marriage to Khadijah",
-    desc: "Known as 'Al-Amin' (The Trustworthy) for his honesty in trade, he married Khadijah, a wealthy businesswoman. She was 40, he was 25. It was a monogamous marriage filled with love and support until her death.",
-    quote: "She believed in me when people rejected me.",
-    source: "Hadith (Musnad Ahmad)"
+    year: "574 CE",
+    title: "The First Purification (Age 4)",
+    desc: "In accordance with Arab custom, the young boy was sent to the desert to be wet-nursed by Halima Al-Sa’diyah, learning the pure Arabic dialect and the rugged strength of the desert.",
+    points: [
+      { title: "The Incident", content: "While playing with other children, Angel Jibril (Gabriel) appeared, laid the young boy down, and gently opened his chest. The angel extracted his heart, washed it with Zamzam water in a golden basin, and removed a black clot—symbolizing the portion of Satan or inclination toward evil. The heart was returned, and the chest healed immediately [2]." },
+      { title: "Significance", content: "This was the first washing of the heart, marking him as protected (Ma'sum) from sin from his earliest childhood." }
+    ]
+  },
+  {
+    year: "576 – 595 CE",
+    title: "The Years of Loss and Character",
+    points: [
+      { title: "576 CE (Age 6)", content: "His mother, Aminah, passed away at Al-Abwa while returning from visiting family. He was now a double orphan, taken in by his loving grandfather, Abdul-Muttalib." },
+      { title: "578 CE (Age 8)", content: "His grandfather passed away. On his deathbed, he entrusted Muhammad to his son, Abu Talib. Abu Talib, though poor, showered his nephew with love and protection for the next 40 years." },
+      { title: "590 CE (Age 20) — The Alliance of the Virtuous (Hilf al-Fudul)", content: "Following a corrupt trade deal where a visitor was cheated, a young Muhammad witnessed the tribal leaders of Mecca gathering to swear a pact: they would stand with the oppressed against the oppressor until justice was served. He later said that if he were invited to such a pact in Islam, he would still accept it [3]." },
+      { title: "595 CE (Age 25) — Marriage to Khadijah", content: "Known throughout Mecca as Al-Amin (The Trustworthy), he managed the business caravans of Khadijah bint Khuwaylid (RA), a wealthy and noble businesswoman. Impressed by his integrity, she proposed marriage. Despite a 15-year age gap, their marriage was one of profound love, respect, and loyalty [4]." }
+    ]
   },
   {
     year: "610 CE",
-    title: "The First Revelation",
-    desc: "At age 40, retreating to the Cave of Hira to meditate on the corruption of society, Angel Gabriel appeared and commanded him: 'Read!'. Shaken, he ran home to Khadijah who comforted him.",
-    quote: "Read in the name of your Lord who created...",
-    source: "Quran 96:1"
+    title: "The Revelation Begins (Age 40)",
+    desc: "Disillusioned by the corruption of Meccan society, Muhammad (PBUH) began retreating to the Cave of Hira for solitude and meditation.",
+    points: [
+      { title: "The Second Purification", content: "According to scholars of Seerah, just before the revelation began, angels washed his heart a second time to prepare his physical and spiritual vessel to bear the \"heavy weight\" of the Divine Word [5]." },
+      { title: "The First Revelation", content: "In the darkness of the cave, Angel Jibril appeared and squeezed him tight, commanding: \"Read!\" (Iqra). Trembling, he replied, \"I cannot read.\" After the third embrace, the first verses of the Quran were revealed: \"Read in the name of your Lord who created...\" [6]." },
+      { title: "The Comfort", content: "He rushed home, shivering, shouting \"Zammilooni\" (Cover me!). Khadijah (RA) comforted him with historic words: \"Allah will never disgrace you. You unite the ties of kinship and bear the burden of the weak.\"" }
+    ]
   },
   {
-    year: "613 CE",
-    title: "Public Preaching & Persecution",
-    desc: "After 3 years of secret preaching, he publicly invited Mecca to One God. The ruling elites (Quraish), fearing loss of power and tourism to the idols, began a campaign of torture, boycott, and mockery.",
-    quote: "Have you seen the one who forbids a servant when he prays?",
-    source: "Quran 96:9-10"
+    year: "613 – 619 CE",
+    title: "The Struggle in Mecca",
+    points: [
+      { title: "613 CE — Public Preaching", content: "After three years of private invitation, Allah commanded him to preach publicly. He stood on Mount Safa and warned his people. The response was mockery and persecution [7]." },
+      { title: "615 CE — The First Migration", content: "Seeing his followers tortured, he sent a group to Abyssinia (Ethiopia), ruled by a just Christian King, the Negus. This was the first time Muslims fled for religious freedom [8]." },
+      { title: "619 CE — The Year of Sorrow (‘Am al-Huzn)", content: "A devastating year. His beloved wife Khadijah and his protecting uncle Abu Talib both died." },
+      { title: "The Rejection at Ta'if", content: "Alone and vulnerable, the Prophet traveled to the city of Ta'if hoping for support. Instead, the leaders mocked him and incited street children to stone him until his shoes filled with blood." },
+      { title: "The Mercy", content: "The Angel of the Mountains appeared, offering to crush the city between two mountains. The Prophet refused, saying, \"No, I hope that Allah will bring forth from their descendants those who worship Allah alone\" [9]." }
+    ]
   },
   {
-    year: "619 CE",
-    title: "The Year of Sorrow",
-    desc: "His wife Khadijah and his protector Uncle Abu Talib both died. He went to Ta'if to preach but was stoned by street children until his shoes filled with blood. He prayed for their guidance, not their destruction.",
-    quote: "I was sent only as a mercy."
+    year: "620 CE",
+    title: "The Night Journey (Al-Isra wal-Mi'raj)",
+    desc: "Following the earthly rejection at Ta'if, Allah invited His Messenger for a heavenly reception.",
+    points: [
+      { title: "The Third Purification", content: "Before the journey commenced, Jibril washed the Prophet's heart a third time with Zamzam water, filling it with wisdom and faith to withstand the direct presence of the Divine [10]." },
+      { title: "The Journey (Isra)", content: "He traveled miraculously by night from Mecca to Jerusalem (Bayt al-Maqdis) on the Buraq. There, he led all 124,000 Prophets in prayer, cementing his status as the final seal of Prophethood [11]." },
+      { title: "The Ascension (Mi'raj)", content: "He ascended through the seven heavens, meeting Prophets such as Adam, Moses, and Jesus (peace be upon them). He reached the Sidrat al-Muntaha (The Lote Tree of the Furthest Boundary), a place no angel had ever passed." },
+      { title: "The Gift", content: "Allah spoke directly to him, commanding the 5 daily prayers (Salah). It was a gift to allow every believer to speak to Allah daily [12]." }
+    ]
   },
   {
     year: "622 CE",
-    title: "The Hijrah (Migration)",
-    desc: "After an assassination attempt, he migrated to Medina (Yathrib). This marks year 0 of the Islamic Calendar (AH). He established a constitution securing rights for Muslims and Jews alike.",
-    quote: "If you do not aid the Prophet - Allah has already aided him...",
-    source: "Quran 9:40"
+    title: "The Hijrah (Migration to Medina)",
+    desc: "The Meccan chiefs plotted to assassinate the Prophet in his sleep, with one man from each tribe striking together to disperse the blood money.",
+    points: [
+      { title: "The Escape", content: "Allah informed him of the plot. Leaving his cousin Ali (RA) in his bed to return entrusted goods to their owners, the Prophet and Abu Bakr escaped." },
+      { title: "The Cave of Thawr", content: "Pursuers reached the mouth of the cave where they hid. Abu Bakr whispered, \"If one of them looks down, he will see us.\" The Prophet replied with absolute conviction: \"What do you think of two, where Allah is the third?\" A spider web and nesting bird convinced the pursuers the cave was empty [14]." },
+      { title: "The Arrival", content: "He arrived in Yathrib (renamed Madinat an-Nabi—The City of the Prophet). He was greeted with joy and song (Tala'a Al-Badru 'Alayna). This event marks Year 1 of the Islamic Calendar (AH)." }
+    ]
   },
   {
-    year: "624 CE",
-    title: "Battle of Badr",
-    desc: "The first major military encounter. 313 ill-equipped Muslims faced 1,000 well-armed Quraish soldiers. Against all odds, Muslims won, signaling a shift in power.",
-    quote: "And Allah had already given you victory at Badr while you were few.",
-    source: "Quran 3:123"
-  },
-  {
-    year: "625 CE",
-    title: "Battle of Uhud",
-    desc: "The Muslims were winning until archers disobeyed the Prophet's command to hold their post. The tables turned; 70 Muslims were martyred, and the Prophet was wounded. A lesson in obedience.",
-    quote: "And Allah had certainly fulfilled His promise to you when you were killing the enemy by His permission until [the time] when you lost courage and fell to disputing...",
-    source: "Quran 3:152"
+    year: "624 – 627 CE",
+    title: "Defending the Faith",
+    points: [
+      { title: "624 CE — Battle of Badr", content: "The first military encounter. 313 ill-equipped Muslims faced 1,000 well-armed Quraish soldiers. Angels descended to assist the believers, resulting in a decisive victory that stunned Arabia [15]." },
+      { title: "625 CE — Battle of Uhud", content: "The Muslims were on the verge of victory until archers disobeyed the Prophet's command to hold their position. The tables turned. The Prophet was injured, his tooth broken, and helmet smashed into his cheek. It was a painful lesson in obedience and discipline [16]." },
+      { title: "627 CE — Battle of the Trench", content: "A coalition of 10,000 enemy soldiers besieged Medina to wipe out Islam. Acting on the advice of Salman the Persian, the Muslims dug a massive trench. The siege lasted weeks until Allah sent a piercingly cold wind that blew away the enemy tents and morale [17]." }
+    ]
   },
   {
     year: "628 CE",
-    title: "Treaty of Hudaybiyyah",
-    desc: "A peace treaty that seemed humiliating to Muslims at first (returning refugees), but it established a 10-year truce. This peace allowed Islam to spread rapidly through dialogue.",
-    quote: "Indeed, We have given you, [O Muhammad], a clear conquest.",
-    source: "Quran 48:1"
+    title: "The Treaty of Hudaybiyyah",
+    desc: "The Prophet saw a dream that he was performing pilgrimage. He marched with 1,400 companions, unarmed, wearing pilgrim robes. They were stopped by the Quraish at Hudaybiyyah.",
+    points: [
+      { title: "The Intense Negotiation", content: "The Quraish sent Suhayl ibn Amr to negotiate terms. When the scribe Ali (RA) wrote \"This is what Muhammad, the Messenger of Allah agrees to...\", Suhayl objected: \"If we knew you were the Messenger of Allah, we would not have fought you. Write only your name and your father's name.\"" },
+      { title: "The Humility", content: "To the shock of his companions, the Prophet personally crossed out \"Messenger of Allah\" and wrote \"Muhammad, son of Abdullah\" to secure peace." },
+      { title: "The Concession", content: "The terms were harsh: Muslims had to return to Medina without pilgrimage this year. They also agreed to return any Meccan who fled to Medina, while Meccans did not have to return anyone who fled to them." },
+      { title: "The Victory", content: "While the companions felt defeated, Allah revealed Surah Al-Fath: \"Indeed, We have given you a clear victory.\" The peace treaty allowed Islam to spread through dialogue. In the following two years, more people accepted Islam than in the previous 18 years combined [18] [19]." }
+    ]
   },
   {
     year: "630 CE",
-    title: "Conquest of Mecca",
-    desc: "Quraish broke the treaty. The Prophet marched with 10,000. Mecca surrendered without blood. He stood at the Kaaba and forgave his persecutors: 'Go, for you are free.'",
-    quote: "When the victory of Allah has come and the conquest...",
-    source: "Quran 110:1"
+    title: "The Conquest of Mecca",
+    desc: "The Quraish violated the treaty by attacking allies of the Muslims. The Prophet marched on Mecca with an army of 10,000.",
+    points: [
+      { title: "The Entry", content: "The city that had tortured him for decades surrendered without a battle. He entered with his head bowed low in humility to Allah." },
+      { title: "The General Amnesty", content: "The Quraish gathered at the Kaaba, terrified of retribution. He asked, \"What do you think I will do to you?\" They pleaded on his noble character. He wept and said, \"I say to you as Joseph said to his brothers: No blame will there be upon you today. Go, for you are free.\" He then purified the Kaaba of its 360 idols [20]." }
+    ]
   },
   {
     year: "632 CE",
-    title: "The Farewell Sermon & Death",
-    desc: "He delivered his final sermon, declaring equality of all races and sanctity of women's rights. He died in Medina with his head in Aisha's lap, whispering 'To the highest companion.'",
-    quote: "Today I have perfected your religion for you...",
-    source: "Quran 5:3"
+    title: "The Farewell & The Departure",
+    points: [
+      { title: "The Farewell Sermon", content: "During his only Hajj, he addressed over 100,000 Muslims. He established the sanctity of life and property, abolished interest (usury), and declared racial equality: \"All mankind is from Adam and Eve. An Arab has no superiority over a non-Arab, nor a white over a black, except by piety and good action\" [21]." },
+      { title: "The Death", content: "Upon returning to Medina, he fell ill. In his final moments, weakened and resting in the lap of his wife Aisha (RA), he raised his finger and whispered his choice: \"Nay, [I choose] the highest companion.\" The Prophet Muhammad (PBUH) passed away, leaving behind a completed religion and a transformed world [22]." }
+    ]
   }
+];
+
+const PROPHET_SOURCES = [
+  "[1] Quran 105:1-5 (Surah Al-Fil); Seerah Ibn Hisham (Vol. 1).",
+  "[2] Sahih Muslim 162 (Book of Faith); Musnad Ahmad (Vol. 3).",
+  "[3] Seerah Ibn Hisham; The Sealed Nectar (Mubarakpuri).",
+  "[4] Musnad Ahmad; Al-Bidayah wan-Nihayah (Ibn Kathir).",
+  "[5] Dalail al-Nubuwwah (Al-Bayhaqi); Cited in Fath al-Bari (Ibn Hajar).",
+  "[6] Quran 96:1 (Surah Al-Alaq); Sahih Al-Bukhari 3.",
+  "[7] Quran 15:94; Sahih Al-Bukhari 4770.",
+  "[8] Musnad Ahmad; Seerah Ibn Ishaq.",
+  "[9] Sahih Al-Bukhari 3231 (Narrated by Aisha).",
+  "[10] Sahih Al-Bukhari 349; Sahih Muslim 163.",
+  "[11] Sahih Muslim 172 (Book of Faith).",
+  "[12] Sahih Al-Bukhari 349.",
+  "[13] Quran 17:1 (Surah Al-Isra).",
+  "[14] Musnad Ahmad 3251; Al-Bidayah wan-Nihayah (Vol. 3).",
+  "[15] Quran 3:123; Sahih Al-Bukhari 3953.",
+  "[16] Quran 3:152; Sahih Al-Bukhari 4043.",
+  "[17] Quran 33:9; Sahih Al-Bukhari 4116.",
+  "[18] Sahih Al-Bukhari 2731 & 2732 (Book of Conditions).",
+  "[19] Quran 48:1 (Surah Al-Fath).",
+  "[20] Sahih Al-Bukhari 4287; Sunan Al-Bayhaqi.",
+  "[21] Musnad Ahmad 22978 (Classified Sahih).",
+  "[22] Sahih Al-Bukhari 4463 (Book of Maghazi)."
 ];
 
 // --- Utility Components ---
@@ -854,13 +910,19 @@ const ProphetPage = ({ onNavigate }) => {
               <div className="absolute -left-[42px] top-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white shadow-sm z-10"></div>
               <span className="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-full mb-2 border border-emerald-100">{event.year}</span>
               <h3 className="font-bold text-2xl text-emerald-900 mb-2 font-playfair">{event.title}</h3>
-              <p className="text-stone-600 leading-relaxed mb-4 text-lg">
-                {event.desc}
-              </p>
-              {event.quote && (
-                <div className="bg-stone-50 p-4 rounded-lg border-l-2 border-stone-300">
-                  <p className="font-serif italic text-stone-700">"{event.quote}"</p>
-                  {event.source && <p className="text-xs text-stone-400 font-bold uppercase mt-2">— {event.source}</p>}
+              {event.desc && (
+                <p className="text-stone-600 leading-relaxed mb-4 text-lg">
+                  {event.desc}
+                </p>
+              )}
+              {event.points && (
+                <div className="space-y-4 mt-4">
+                  {event.points.map((point, pIdx) => (
+                    <div key={pIdx} className="bg-stone-50 p-4 rounded-lg border-l-2 border-emerald-200">
+                      <h4 className="font-bold text-emerald-800 text-sm mb-1">{point.title}</h4>
+                      <p className="text-stone-700 text-base">{point.content}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -870,6 +932,16 @@ const ProphetPage = ({ onNavigate }) => {
         <div className="mt-16 bg-stone-50 p-8 rounded-2xl border border-stone-200 text-center">
           <p className="font-serif italic text-xl text-stone-700 mb-4">"My example is like that of a man who kindled a fire... I am holding you back from the fire, but you are rushing into it."</p>
           <p className="text-xs font-bold uppercase text-stone-400 tracking-widest">— Prophet Muhammad (Sahih Muslim)</p>
+        </div>
+
+        {/* Sources Section */}
+        <div className="mt-16 pt-8 border-t border-stone-200 text-left">
+          <h3 className="font-playfair text-xl md:text-2xl text-stone-800 mb-6">Sources & References</h3>
+          <div className="grid md:grid-cols-2 gap-y-2 gap-x-4 text-xs text-stone-500 font-mono">
+            {PROPHET_SOURCES.map((source, idx) => (
+              <div key={idx}>{source}</div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
