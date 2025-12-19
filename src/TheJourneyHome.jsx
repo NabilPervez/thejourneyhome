@@ -2,12 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import DuaPage from './DuaPage';
 import DhikrPage from './DhikrPage';
 import HowToPrayPage from './HowToPrayPage';
+import GatesOfJannahPage from './GatesOfJannahPage';
+import WhenWeDiePage from './WhenWeDiePage';
+import JudgementDayPage from './JudgementDayPage';
+import JannahPage from './JannahPage';
 import {
   BookOpen, Heart, Star, Sun, Moon, Droplets, Mountain, Compass, Anchor,
   User, Check, X, ArrowRight, Scroll, Sparkles, ChevronLeft, ChevronRight,
   Wind, Thermometer, Map, Activity, GraduationCap, HeartHandshake, Coffee,
   MessageCircle, Flame, Mic2, Shield, Smile, ArrowLeft, Menu, Eye, Cloud,
-  Ghost, Scale, Lock, Globe, Swords, Flag, Tent, Crown
+  Ghost, Scale, Lock, Globe, Swords, Flag, Tent, Crown, DoorOpen, Skull
 } from 'lucide-react';
 
 // --- DATA: Traits of a Believer (Expanded) ---
@@ -1121,6 +1125,11 @@ export default function TheJourneyHome() {
               <NavLink target="dua" label="Duas" icon={MessageCircle} />
               <NavLink target="dhikr" label="Dhikr" icon={Activity} />
               <NavLink target="how-to-pray" label="How to Pray" icon={BookOpen} />
+              <div className="w-px h-6 bg-stone-300 mx-1"></div>
+              <NavLink target="death" label="The Journey" icon={Skull} />
+              <NavLink target="judgment" label="Judgement" icon={Scale} />
+              <NavLink target="gates" label="Gates" icon={DoorOpen} />
+              <NavLink target="jannah" label="Jannah" icon={Crown} />
             </div>
 
             <div className="flex items-center gap-3">
@@ -1146,6 +1155,11 @@ export default function TheJourneyHome() {
             <NavLink target="dua" label="Duas" icon={MessageCircle} />
             <NavLink target="dhikr" label="Dhikr" icon={Activity} />
             <NavLink target="how-to-pray" label="How to Pray" icon={BookOpen} />
+            <div className="h-px bg-stone-100 my-1"></div>
+            <NavLink target="death" label="When We Die" icon={Skull} />
+            <NavLink target="judgment" label="Judgement Day" icon={Scale} />
+            <NavLink target="gates" label="Gates of Jannah" icon={DoorOpen} />
+            <NavLink target="jannah" label="Jannah" icon={Crown} />
           </div>
         )}
       </nav>
@@ -1161,6 +1175,10 @@ export default function TheJourneyHome() {
       {view === 'dua' && <DuaPage onNavigate={handleNavigate} />}
       {view === 'dhikr' && <DhikrPage onNavigate={handleNavigate} />}
       {view === 'how-to-pray' && <HowToPrayPage onNavigate={handleNavigate} />}
+      {view === 'gates' && <GatesOfJannahPage onNavigate={handleNavigate} />}
+      {view === 'death' && <WhenWeDiePage onNavigate={handleNavigate} />}
+      {view === 'judgment' && <JudgementDayPage onNavigate={handleNavigate} />}
+      {view === 'jannah' && <JannahPage onNavigate={handleNavigate} />}
 
       {/* Footer */}
       {(view !== 'names') && (
