@@ -112,7 +112,14 @@ export default function WhenWeDiePage({ onNavigate }) {
                     <p className="text-stone-600 text-lg font-serif italic mb-4">
                         "Grave is the first stage of the cooling of the eye for the believer."
                     </p>
-                    <p className="text-stone-500 font-bold uppercase text-xs">Prophet Muhammad (PBUH)</p>
+                    <p className="text-stone-500 font-bold uppercase text-xs mb-8">Prophet Muhammad (PBUH)</p>
+
+                    <button
+                        onClick={() => onNavigate('judgment')}
+                        className="w-full md:w-auto px-8 py-4 bg-stone-800 text-white rounded-full font-bold hover:bg-emerald-600 transition-all flex items-center justify-center gap-2 mx-auto"
+                    >
+                        Next Stage: The Day of Judgment <ArrowRight size={20} />
+                    </button>
                 </div>
             </div>
         </div>

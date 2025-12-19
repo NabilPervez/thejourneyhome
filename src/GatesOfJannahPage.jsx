@@ -252,6 +252,15 @@ export default function GatesOfJannahPage({ onNavigate }) {
                         </button>
                     ))}
                 </div>
+
+                <div className="mt-16 text-center">
+                    <button
+                        onClick={() => onNavigate('jannah')}
+                        className="w-full md:w-auto px-8 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-500 transition-all flex items-center justify-center gap-2 mx-auto shadow-2xl transform hover:scale-105"
+                    >
+                        Next Stage: Enter Jannah <ArrowRight size={20} />
+                    </button>
+                </div>
             </div>
         </div>
     );

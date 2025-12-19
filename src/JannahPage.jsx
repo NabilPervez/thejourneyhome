@@ -78,7 +78,14 @@ export default function JannahPage({ onNavigate }) {
                         While they are enjoying their blessings, a light will shine from above. The Lord of the Worlds will reveal His Veil. They will look at His Face. By Allah, they will not have been given anything dearer to them than looking at their Lord.
                     </p>
                     <p className="font-serif italic text-emerald-400 text-lg relative z-10">"Some faces, that Day, will be radiant, looking at their Lord."</p>
-                    <p className="text-xs text-stone-500 uppercase font-bold mt-2 relative z-10">Quran 75:22-23</p>
+                    <p className="text-xs text-stone-500 uppercase font-bold mt-2 mb-8 relative z-10">Quran 75:22-23</p>
+
+                    <button
+                        onClick={() => onNavigate('home')}
+                        className="relative z-10 w-full md:w-auto px-8 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-500 transition-all flex items-center justify-center gap-2 mx-auto shadow-2xl transform hover:scale-105"
+                    >
+                        <Home size={20} /> Return Home
+                    </button>
                 </section>
 
                 {/* Section 4: Sources Footer */}
