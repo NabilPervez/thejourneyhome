@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Skull, Cloud, MessageCircle, Moon, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Skull, Cloud, MessageCircle, Moon, Clock } from 'lucide-react';
 
 const TIMELINE_EVENTS = [
     {
